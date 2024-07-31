@@ -17,6 +17,12 @@ Hover over the form to expand it and explore the files and folders within.
 - Customizable name parameter
 
 ## Usage
+
+### parameter
+```
+-name '$name' -ContainerPath $Containerpath -StartLocation $X,$Y -UseIconFromFile UseIconFromFile -Theme Lightmode/Darkmode
+```
+
 ### Downlade
 Clone the repository or download the script
 Run the script in PowerShell, providing the desired path as a parameter (e.g., .\DesktopQuickExplorer.ps1 -Path "C:\Users\Username\Documents")
