@@ -20,13 +20,21 @@ Hover over the form to expand it and explore the files and folders within.
 
 ### parameter
 ```
--name '$name' -ContainerPath $Containerpath -StartLocation $X,$Y -UseIconFromFile UseIconFromFile -Theme Lightmode/Darkmode
+-name $name -ContainerPath $Containerpath -StartLocation $X,$Y -UseIconFromFile UseIconFromFile -Theme Lightmode/Darkmode
 ```
 
-### Downlode
+
 Clone the repository or download the script
-Run the script in PowerShell, providing the desired path as a parameter (e.g., .\DesktopQuickExplorer.ps1 -Path "C:\Users\Username\Documents")
+
+Run the script in PowerShell, providing the desired path as a parameter 
+
 The script will create a desktop form displaying the contents of the specified directory
+
+
+### Example
+```
+.\DesktopQuickExplorer.ps1 -name "My Container" -ContainerPath c:\temp\  -Theme Darkmode -Controlbox $true
+```
 
 ### Requirements
 PowerShell 3 or later
