@@ -71,8 +71,9 @@ function Show-Container {
 
     $fBase_Load = {
         if (-not (Test-Path -Path $Containerpath)) {
-            [system.Windows.Forms.MessageBox]::Show("Containerpath does not Exist.`nThis Container will shutdown.`nNothing happend.`n($Containerpath)", 'Error', 'OK', 'Error', 'Button1', 'RightAlign', $false)
+            [system.Windows.Forms.MessageBox]::Show("Containerpath does not Exist.`nThis Container will shutdown.`n`nContainerPath = '$Containerpath'", 'Error', 'OK', 'Error')
             $fBase.Close()
+            return
         }
 		
 		
@@ -114,8 +115,9 @@ function Show-Container {
     $button_DragEnter = [System.Windows.Forms.DragEventHandler] {
 		
         if (-not (Test-Path -Path $Containerpath)) {
-            [system.Windows.Forms.MessageBox]::Show("Containerpath does not Exist.`nThis Container will shutdown.`nNothing happend.`n($Containerpath)", 'Error', 'OK', 'Error', 'Button1', 'RightAlign', $false)
+            [system.Windows.Forms.MessageBox]::Show("Containerpath does not Exist.`nThis Container will shutdown.`n`nContainerPath = '$Containerpath'", 'Error', 'OK', 'Error')
             $fBase.Close()
+            return
         }
 		
         $button.Image = $null
@@ -153,10 +155,6 @@ function Show-Container {
     }
 	
 	
-    #----------------------------------------------
-    #region Generated Events
-    #----------------------------------------------
-	
     $Form_StateCorrection_Load =
     {
         #Correct the initial state of the form to prevent the .Net maximized form issue
@@ -187,11 +185,7 @@ function Show-Container {
         $button.Dispose()
         $timerDrag.Dispose()
     }
-    #endregion Generated Events
-
-    #----------------------------------------------
-    #region Generated Form Code
-    #----------------------------------------------
+ 
     $fBase.SuspendLayout()
     #
     # form1
@@ -287,9 +281,10 @@ function Add-Button ($file) {
 function Load-Container {
 
     if (-not (Test-Path -Path $Containerpath)) {
-        [system.Windows.Forms.MessageBox]::Show("Containerpath does not Exist.`nThis Container will shutdown.`nNothing happend.`n($Containerpath)", 'Error', 'OK', 'Error', 'Button1', 'RightAlign', $false)
+        [system.Windows.Forms.MessageBox]::Show("Containerpath does not Exist.`nThis Container will shutdown.`n`nContainerPath = '$Containerpath'", 'Error', 'OK', 'Error')
         $fBase.Close()
         $fContainer.Close()
+        return
     }
 
     $textbox1.AutoCompleteCustomSource.Equals($null)
@@ -318,7 +313,7 @@ function Load-Container {
         $textbox1.AutoCompleteCustomSource.Add($file.name)
         Add-Button -file $file
     }
-
+    
 }
 
 
@@ -482,9 +477,7 @@ function Show-OpedContainer {
     }
     #endregion Generated Events
 
-    #----------------------------------------------
-    #region Generated Form Code
-    #----------------------------------------------
+ 
     $fContainer.SuspendLayout()
     $panel1.SuspendLayout()
     $contextmenustrip1.SuspendLayout()
@@ -625,9 +618,7 @@ function Show-OpedContainer {
     $contextmenustrip1.ResumeLayout()
     $panel1.ResumeLayout()
     $fContainer.ResumeLayout()
-    #endregion Generated Form Code
 
-    #----------------------------------------------
 
     #Save the initial state of the form
     $InitialFormWindowState = $fContainer.WindowState
