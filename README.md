@@ -20,7 +20,7 @@ Hover over the form to expand it and explore the files and folders within.
 
 ### parameter
 ```
--name $name -ContainerPath $Containerpath -StartLocation $X,$Y -UseIconFromFile UseIconFromFile -Theme Lightmode/Darkmode
+-name "Title for Container" -ContainerPath "c:\Folder\To\Display" -StartLocation $X,$Y -UseIconFromFile "c:\Path\To\Icon.ico" -Theme "Lightmode"/"Darkmode"/"Black&Purple" -Controlbox $true/$false
 ```
 
 
@@ -33,7 +33,7 @@ The script will create a desktop form displaying the contents of the specified d
 
 ### Example
 ```
-.\DesktopQuickExplorer.ps1 -name "My Container" -ContainerPath c:\temp\  -Theme Darkmode -Controlbox $true
+.\DesktopQuickExplorer.ps1 -name "My Container" -ContainerPath "c:\"  -Theme Darkmode
 ```
 
 ### Requirements
