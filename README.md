@@ -1,10 +1,15 @@
 # DesktopQuickExplorer
+
 A PowerShell script that creates a desktop form displaying files and folders at a specified path.
+
 Hover over the form to expand and explore the Childitems for the Provided ContainerPath.
+
 ## About
 
 DesktopQuickExplorer is a lightweight PowerShell script that provides quick access to files and folders on your desktop.
+
 Simply provide a path as a parameter, and the script will create a compact form displaying the contents of that directory.
+
 Hover over the form to expand it and explore the files and folders within.
 
 ## Features
