@@ -44,7 +44,7 @@ The script will create a desktop form displaying the contents of the specified d
 
 ### Example
 ```
-.\DesktopQuickExplorer.ps1 -name "My Container" -ContainerPath "c:\"  -Theme Darkmode
+.\DesktopQuickExplorer.ps1 -name "My Container" -ContainerPath "c:\"
 ```
 
 ### Requirements
