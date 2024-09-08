@@ -5,8 +5,9 @@ param (
     [string]$ContainerPath = 'C:\',
     [parameter(HelpMessage = '"$x,$y"')]
     [string]$StartLocation,
+    [parameter(HelpMessage = 'Provide a path to a file and use its icon to be displayed on the basecontainer insted of a name')]
     [string]$UseIconFromFile,
-    [string]$Theme = 'Back&Purple',
+    [string]$Theme = 'violet',
     [switch]$ControlBox = $true
 )
 
@@ -28,12 +29,6 @@ if ($explorerIconpath) {
     $explorerIcon = [System.Drawing.Icon]::ExtractAssociatedIcon($explorerIconpath)
 }
 
-
-$script:AddIconpath = $null ### change to a pwth with a + Symbol Icon file
-if ($AddIconpath) {
-    $script:AddIcon = [System.Drawing.Icon]::ExtractAssociatedIcon($AddIconpath)
-}
-
 if ($Theme -eq 'Lightmode') {
     $script:textcolor = [system.Drawing.Color]::Black
     $script:color1 = [system.Drawing.Color]::FromArgb(250, 250, 250)
@@ -47,11 +42,11 @@ elseif ($Theme -eq 'Darkmode') {
     $script:color2 = [system.Drawing.Color]::FromArgb(60, 60, 60)
     $script:color3 = [system.Drawing.Color]::FromArgb(70, 70, 70)
 }
-elseif ($Theme -eq 'Back&Purple') {
-    $script:textcolor = [system.Drawing.Color]::MediumPurple
-    $script:color1 = [system.Drawing.Color]::FromArgb(20, 20, 20)
-    $script:color2 = [system.Drawing.Color]::FromArgb(20, 20, 20)
-    $script:color3 = [system.Drawing.Color]::FromArgb(20, 20, 20)
+elseif ($Theme -eq 'Violet') {
+    $script:textcolor = [system.Drawing.Color]::Violet
+    $script:color1 = [system.Drawing.Color]::FromArgb(40, 40, 40)
+    $script:color2 = [system.Drawing.Color]::FromArgb(40, 40, 40)
+    $script:color3 = [system.Drawing.Color]::FromArgb(40, 40, 40)
     
 
 }
@@ -122,8 +117,7 @@ function Show-Container {
 		
         $button.Image = $null
         $fBase.Opacity = 1
-        $button.Text = $null
-        $button.BackgroundImage = $AddIcon
+        $button.Text = "+"
         $script:drag = $args[1]
     }
 	
@@ -139,33 +133,18 @@ function Show-Container {
         Start-Sleep -Milliseconds 80 # else it is alsways true cuz its reads to fast
 		
         if ($fBase.ClientRectangle.Contains($button.PointToClient([System.Windows.Forms.Cursor]::Position))) {
-            'inside' | oh
             foreach ($path in $drag.Data.GetData([System.Windows.Forms.DataFormats]::FileDrop)) {
-                'drag: ' + $path | oh
                 Move-Item -Path $path -Destination $Containerpath -Force
             }
-            'done' | oh
             $timerDrag.Enabled = $false
         }
     }
-	
-    $fBase_FormClosed = [System.Windows.Forms.FormClosedEventHandler] {
-        #$configpath = ($HostInvocation.MyCommand | Split-Path -Parent) + "\Containers\$name.ps1"
-        #"$($HostInvocation.mycommand) -name '$name' -ContainerPath '$Containerpath' -StartLocation '$($fBase.Location.X),$($fBase.Location.y)' -UseIconFromFile '$UseIconFromFile' -Theme '$theme'" | Out-File -FilePath $configpath
-    }
-	
 	
     $Form_StateCorrection_Load =
     {
         #Correct the initial state of the form to prevent the .Net maximized form issue
         $fBase.WindowState = $InitialFormWindowState
     }
-	
-    $Form_StoreValues_Closing =
-    {
-        #Store the control values
-    }
-
 	
     $Form_Cleanup_FormClosed =
     {
@@ -394,7 +373,7 @@ function Show-OpedContainer {
     }
 	
     $DeleteItem_Click = {
-        #Throws items in the Recycling bin 
+        #Throws items in Recycling bin 
         $shell = New-Object -ComObject 'Shell.Application'
 		($shell.Namespace(0).ParseName($contextmenustrip1.SourceControl.Tag.fullname)).InvokeVerb('delete')
         Load-Container
