@@ -2,7 +2,11 @@
 
 A PowerShell script that creates a desktop form displaying files and folders at a specified path.
 
+![closed container](https://github.com/user-attachments/assets/47428615-fcec-4fc4-bbc7-f701d542f894)
+
 Hover over the form to expand and explore the Childitems for the Provided ContainerPath.
+
+![openconatiener](https://github.com/user-attachments/assets/27db9468-9911-4f67-a857-decb66ab323b)
 
 ## About
 
